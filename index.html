@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apresentação do Criador</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <h1>Códigos de alta performance</h1>
+  </header>
+
+  <nav>
+    <a href="#" onclick="mostrarSecao('apresentacao')">Apresentação</a>
+    <a href="#" onclick="mostrarSecao('login')">Login</a>
+    <a href="#" onclick="mostrarSecao('cadastro')">Cadastro</a>
+  </nav>
+
+  <section id="apresentacao">
+    <h2>Sobre o Criador</h2>
+    <p>Olá! Eu sou o criador deste site. Este projeto é uma demonstração de habilidades em HTML, CSS e JavaScript.</p>
+    <p>Confira meu <a href="https://www.linkedin.com/in/seu-perfil" target="_blank">LinkedIn</a>.</p>
+  </section>
+
+  <section id="login" style="display:none">
+    <h2>Login</h2>
+    <div class="error" id="loginErro"></div>
+    <input type="email" id="loginEmail" placeholder="Email">
+    <input type="password" id="loginSenha" placeholder="Senha">
+    <button onclick="fazerLogin()">Entrar</button>
+  </section>
+
+  <section id="cadastro" style="display:none">
+    <h2>Cadastro</h2>
+    <div class="error" id="cadastroErro"></div>
+    <input type="text" id="cadastroNome" placeholder="Nome">
+    <input type="email" id="cadastroEmail" placeholder="Email">
+    <input type="password" id="cadastroSenha" placeholder="Senha">
+    <button onclick="fazerCadastro()">Cadastrar</button>
+  </section>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
