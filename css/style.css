@@ -1,4 +1,3 @@
-/* Reset básico para garantir consistência */
 * {
   margin: 0;
   padding: 0;
@@ -7,8 +6,8 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte moderna e limpa */
-  background-color: #f8f9fb; /* Fundo suave e neutro */
-  color: #444; /* Texto escuro mas suave */
+  background-color: #f8f9fb; 
+  color: #444;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +15,6 @@ body {
   padding: 20px;
 }
 
-/* Cabeçalho */
 header {
   text-align: center;
   margin-bottom: 40px;
@@ -24,14 +22,43 @@ header {
 
 header h1 {
   font-size: 2.5rem;
-  color: #2e3d49; /* Azul escuro suave */
+  color: #2e3d49;
   margin-bottom: 10px;
 }
 
 header p {
   font-size: 1.2rem;
-  color: #6c757d; /* Cinza suave */
+  color: #6c757d;
   font-weight: 300;
+}
+
+.header-actions {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#btn-perfil {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.3s ease;
+}
+
+#btn-perfil:hover {
+  transform: scale(1.1);
+}
+
+#btn-perfil img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #17a2b8;
 }
 
 /* Seção de autenticação (formulário) */
@@ -39,9 +66,9 @@ header p {
   background-color: white;
   padding: 40px;
   border-radius: 12px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   width: 100%;
-  max-width: 420px; /* Limita a largura máxima */
+  max-width: 420px;
 }
 
 .auth-section h2 {
@@ -52,30 +79,28 @@ header p {
   text-align: center;
 }
 
-/* Estilo dos campos de input */
 input[type="email"], input[type="password"], input[type="text"] {
   width: 100%;
   padding: 12px;
   margin-bottom: 20px;
-  border: 2px solid #ced4da; /* Borda suave */
+  border: 2px solid #ced4da;
   border-radius: 8px;
   font-size: 1rem;
-  background-color: #f1f3f5; /* Fundo neutro e suave */
-  color: #495057; /* Cor do texto mais escura */
+  background-color: #f1f3f5; 
+  color: #495057;
   transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus {
-  border-color: #17a2b8; /* Cor mais suave no foco */
-  background-color: #fff; /* Fundo branco ao focar */
-  outline: none; /* Remove a borda padrão do navegador */
+  border-color: #17a2b8;
+  background-color: #fff;
+  outline: none;
 }
 
-/* Estilo do botão */
 button {
   width: 100%;
   padding: 14px;
-  background-color: #17a2b8; /* Azul suave para os botões */
+  background-color: #17a2b8;
   color: white;
   border: none;
   border-radius: 8px;
@@ -85,10 +110,9 @@ button {
 }
 
 button:hover {
-  background-color: #138496; /* Azul mais escuro no hover */
+  background-color: #138496;
 }
 
-/* Estilo do link (exemplo para "Esqueceu a senha?") */
 a {
   display: block;
   text-align: center;
@@ -103,25 +127,21 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Mensagens de erro e sucesso */
 .mensagem {
   padding: 12px 20px;
   margin: 20px 0;
-  background-color: #28a745; /* Verde para sucesso */
+  background-color: #28a745;
   color: white;
   text-align: center;
   font-size: 1.1rem;
   border-radius: 8px;
-  display: none; /* Inicialmente oculta */
+  display: none;
 }
 
 .mensagem.erro {
-  background-color: #dc3545; /* Vermelho para erros */
+  background-color: #dc3545;
 }
 
-/* ------------------------------- FORMULÁRIOS - Prioridade ------------------------------- */
-
-/* Campo de Prioridade com opções de radio buttons estilizados */
 fieldset {
   margin: 20px 0;
   padding: 20px;
@@ -147,7 +167,6 @@ label {
   border-radius: 8px;
 }
 
-/* Escondendo os radio buttons nativos e estilizando os labels */
 input[type="radio"] {
   display: none;
 }
@@ -159,7 +178,7 @@ input[type="radio"]:checked + label {
 }
 
 input[type="radio"]:checked + label:hover {
-  background-color: #138496; /* Efeito de hover no label quando selecionado */
+  background-color: #138496; 
 }
 
 input[type="radio"]:not(:checked) + label {
@@ -169,15 +188,12 @@ input[type="radio"]:not(:checked) + label {
 }
 
 input[type="radio"]:not(:checked) + label:hover {
-  background-color: #adb5bd; /* Hover nos não selecionados */
+  background-color: #adb5bd;
 }
 
-/* ------------------------------ RESPONSIVIDADE ---------------------------- */
-
-/* Responsividade para dispositivos maiores (ex: tablets e laptops) */
 @media (max-width: 1024px) {
   .auth-section {
-    padding: 35px 25px; /* Ajusta o padding para telas menores */
+    padding: 35px 25px;
   }
 
   header h1 {
@@ -197,7 +213,6 @@ input[type="radio"]:not(:checked) + label:hover {
   }
 }
 
-/* Responsividade para dispositivos móveis */
 @media (max-width: 768px) {
   header h1 {
     font-size: 2rem;
@@ -209,7 +224,7 @@ input[type="radio"]:not(:checked) + label:hover {
 
   .auth-section {
     padding: 25px 15px;
-    width: 100%; /* Formulário vai ocupar a largura total em dispositivos móveis */
+    width: 100%;
   }
 
   input[type="email"], input[type="password"], input[type="text"], button {
@@ -225,7 +240,6 @@ input[type="radio"]:not(:checked) + label:hover {
     margin-right: 20px;
   }
 
-  /* Ajustes no botão de "Cadastrar" */
   button {
     font-size: 1rem;
   }

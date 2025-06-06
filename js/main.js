@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function () {
     fazerCadastro(); // Chama a função de cadastro no auth.js
   });
 
-  // Função de "Esqueceu a senha?"
+  // "Esqueceu a senha?"
   linkEsqueceuSenha.addEventListener('click', function (event) {
     event.preventDefault(); //não funcional
     alert('Funcionalidade não implementada.');
