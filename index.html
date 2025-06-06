@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Apresentação do Criador</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gerenciador de Compras</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
 </head>
 <body>
   <header>
-    <h1>Códigos de alta performance</h1>
+    <h1>Gerenciador de Compras</h1>
   </header>
 
-  <nav>
-    <a href="#" onclick="mostrarSecao('apresentacao')">Apresentação</a>
-    <a href="#" onclick="mostrarSecao('login')">Login</a>
-    <a href="#" onclick="mostrarSecao('cadastro')">Cadastro</a>
-  </nav>
+  <main>
+    <!-- Seção de Login -->
+    <section id="login" class="auth-section">
+      <h2>Faça seu login</h2>
+      <div class="error" id="loginErro"></div>
+      <input type="email" id="loginEmail" placeholder="Email" required />
+      <input type="password" id="loginSenha" placeholder="Senha" required />
+      <button id="btn-login">Entrar</button>
+      <a href="#" id="link-esqueceu-senha">Esqueceu a senha?</a>
+      <br />
+      <button id="btn-cadastro">Cadastrar-se</button>
+    </section>
 
-  <section id="apresentacao">
-    <h2>Sobre o Criador</h2>
-    <p>Olá! Eu sou o criador deste site. Este projeto é uma demonstração de habilidades em HTML, CSS e JavaScript.</p>
-    <p>Confira meu <a href="https://www.linkedin.com/in/seu-perfil" target="_blank">LinkedIn</a>.</p>
-  </section>
+    <!-- Seção de Cadastro -->
+    <section id="cadastro" class="auth-section" style="display:none;">
+      <h2>Cadastro</h2>
+      <div class="error" id="cadastroErro"></div>
+      <input type="text" id="cadastroNome" placeholder="Nome" required />
+      <input type="email" id="cadastroEmail" placeholder="Email" required />
+      <input type="password" id="cadastroSenha" placeholder="Senha" required />
+      <button id="btn-cadastrar">Cadastrar</button>
+      <br />
+      <button id="btn-voltar">Voltar ao Login</button>
+    </section>
+  </main>
 
-  <section id="login" style="display:none">
-    <h2>Login</h2>
-    <div class="error" id="loginErro"></div>
-    <input type="email" id="loginEmail" placeholder="Email">
-    <input type="password" id="loginSenha" placeholder="Senha">
-    <button onclick="fazerLogin()">Entrar</button>
-  </section>
+  <footer>
+    <p>&copy; 2025 Gerenciador de Compras. Todos os direitos reservados.</p>
+  </footer>
 
-  <section id="cadastro" style="display:none">
-    <h2>Cadastro</h2>
-    <div class="error" id="cadastroErro"></div>
-    <input type="text" id="cadastroNome" placeholder="Nome">
-    <input type="email" id="cadastroEmail" placeholder="Email">
-    <input type="password" id="cadastroSenha" placeholder="Senha">
-    <button onclick="fazerCadastro()">Cadastrar</button>
-  </section>
-
-  <script src="js/script.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>
