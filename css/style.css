@@ -29,22 +29,6 @@ header {
   position: relative;
 }
 
-header .perfil-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 1rem;
-}
-
-header .perfil-container img.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #00d4ff;
-  object-fit: cover;
-}
-
 .btn-perfil {
   display: inline-block;
   background-color: #00d4ff;
@@ -303,4 +287,54 @@ tr:nth-child(even) {
 .input-destacado {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  table {
+    width: 100%;
+    font-size: 0.85rem;
+    display: block;
+    overflow-x: auto;
+  }
+
+  table thead {
+    display: none; /* Esconde o cabeçalho em telas pequenas */
+  }
+
+  table tbody tr {
+    display: block;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    border-radius: 8px;
+    background-color: #fff;
+  }
+
+  table tbody td {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  table tbody td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    flex-basis: 45%;
+    color: #555;
+  }
+
+  /* Botões em coluna */
+  .btn-toolbar {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .btn-acao {
+    width: 100%;
+  }
+
+  .grid-api {
+    grid-template-columns: 1fr !important;
+  }
 }

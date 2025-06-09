@@ -31,42 +31,6 @@ footer p {
   color: #a0aec0;
 }
 
-.perfil-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #00d4ff;
-  font-weight: bold;
-  text-decoration: none;
-  margin-left: auto;
-}
-
-.perfil-link img.avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #00d4ff;
-  transition: border-color 0.3s ease;
-}
-
-.perfil-link:hover img.avatar {
-  border-color: #00ffcc;
-}
-
-.perfil-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-}
-
-.perfil-header .avatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 3px solid #00d4ff;
-}
-
 main {
   display: flex;
   justify-content: center;
