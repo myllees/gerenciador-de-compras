@@ -31,6 +31,37 @@ function formatarPreco(valor) {
   return `R$ ${Number(valor).toFixed(2).replace('.', ',')}`;
 }
 
+let moedaAtual = 'BRL';
+let taxaCambio = 1;
+
+function buscarTaxaCambio(moeda) {
+  if (moeda === 'BRL') {
+    taxaCambio = 1;
+    document.getElementById('taxa-conversao').textContent = '';
+    renderizarTabela();
+    atualizarTotalGasto();
+    return;
+  }
+
+  fetch(`https://api.exchangerate.host/latest?base=BRL&symbols=${moeda}`)
+    .then(res => res.json())
+    .then(data => {
+      taxaCambio = data.rates[moeda];
+      document.getElementById('taxa-conversao').textContent = `1 BRL ≈ ${taxaCambio.toFixed(2)} ${moeda}`;
+      renderizarTabela();
+      atualizarTotalGasto();
+    })
+    .catch(() => {
+      alert('Erro ao buscar taxa de câmbio.');
+      taxaCambio = 1;
+    });
+}
+
+function formatarPrecoConvertido(valor) {
+  const convertido = valor * taxaCambio;
+  return `${moedaAtual} ${convertido.toFixed(2).replace('.', ',')}`;
+}
+
 function gerarIdUnico() {
   return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
@@ -39,13 +70,12 @@ function atualizarTotalGasto() {
   const total = compras.reduce((soma, item) => soma + (item.preco * item.quantidade), 0);
   const divTotal = document.getElementById('total-gasto');
   if (divTotal) {
-    divTotal.textContent = `Total Gasto: ${formatarPreco(total)}`;
+    divTotal.textContent = `Total Gasto: ${formatarPrecoConvertido(total)}`;
   }
 }
 
-// Renderizar a tabela de compras
 function renderizarTabela(filtradas = null) {
-  const lista = filtradas || compras;
+  const lista = (filtradas || compras).slice().sort((a, b) => new Date(b.dataCriacao) - new Date(a.dataCriacao));
   tabelaCompras.innerHTML = '';
 
   lista.forEach(({ id, produto, quantidade, preco, prioridade, dataCriacao }) => {
@@ -67,13 +97,13 @@ function renderizarTabela(filtradas = null) {
     const tdProduto = document.createElement('td');
     tdProduto.textContent = produto;
     tr.appendChild(tdProduto);
-
+    
     const tdQuantidade = document.createElement('td');
     tdQuantidade.textContent = quantidade;
     tr.appendChild(tdQuantidade);
 
     const tdPreco = document.createElement('td');
-    tdPreco.textContent = formatarPreco(preco);
+    tdPreco.textContent = formatarPrecoConvertido(preco);
     tr.appendChild(tdPreco);
 
     const tdPrioridade = document.createElement('td');
@@ -81,7 +111,7 @@ function renderizarTabela(filtradas = null) {
     tr.appendChild(tdPrioridade);
 
     const tdData = document.createElement('td');
-    tdData.textContent = new Date(dataCriacao).toLocaleDateString('pt-BR');
+    tdData.textContent = new Date(dataCriacao).toLocaleString('pt-BR');
     tr.appendChild(tdData);
 
     tabelaCompras.appendChild(tr);
@@ -130,6 +160,7 @@ function excluirCompra(ids) {
 function alternarSelecao() {
   selecionando = !selecionando;
   if (!selecionando) selecionados.clear();
+  btnToggleSelect.textContent = selecionando ? 'Cancelar' : 'Selecionar';
   atualizarBotoes();
   renderizarTabela();
 }
@@ -148,7 +179,7 @@ function resetarFormulario(form) {
 }
 
 // Envio de Formulário
-formCompra.addEventListener('submit', function(e) {
+formCompra.addEventListener('submit', function (e) {
   e.preventDefault();
   const produto = produtoInput.value.trim();
   const quantidade = quantidadeInput.value;
@@ -191,7 +222,10 @@ btnEdit.addEventListener('click', () => {
   if (selecionados.size === 1) {
     const idParaEditar = [...selecionados][0];
     const compra = compras.find(c => c.id === idParaEditar);
-    if (!compra) return;
+    if (!compra) {
+      alert('Compra não encontrada.');
+      return;
+    }
 
     produtoInput.value = compra.produto;
     quantidadeInput.value = compra.quantidade;
@@ -207,9 +241,13 @@ btnEdit.addEventListener('click', () => {
   }
 });
 
-// Aqui, adiciona o filtro em tempo real no input de busca
 buscaInput.addEventListener('input', e => {
   filtrarCompras(e.target.value);
+});
+
+document.getElementById('moeda').addEventListener('change', e => {
+  moedaAtual = e.target.value;
+  buscarTaxaCambio(moedaAtual);
 });
 
 // Inicialização

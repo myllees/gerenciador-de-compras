@@ -3,7 +3,9 @@ function fazerLogin() {
   const email = document.getElementById('loginEmail').value;
   const senha = document.getElementById('loginSenha').value;
   const erro = document.getElementById('loginErro');
+
   erro.textContent = '';
+  erro.style.display = 'none';
 
   const usuario = JSON.parse(localStorage.getItem('usuario'));
 
@@ -11,9 +13,9 @@ function fazerLogin() {
     window.location.href = 'dashboard.html';
   } else {
     erro.textContent = 'Email ou senha incorretos.';
+    erro.style.display = 'block';
   }
 }
-
 
 // Função para cadastro
 function fazerCadastro() {
@@ -21,10 +23,13 @@ function fazerCadastro() {
   const email = document.getElementById('cadastroEmail').value;
   const senha = document.getElementById('cadastroSenha').value;
   const erro = document.getElementById('cadastroErro');
+
   erro.textContent = '';
+  erro.style.display = 'none';
 
   if (!nome || !email || !senha) {
     erro.textContent = 'Todos os campos são obrigatórios.';
+    erro.style.display = 'block';
     return;
   }
 
